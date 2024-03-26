@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "chatbot"
+version = "0.0.1"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain-community = "0.0.19"
+langchain = {version = "<0.1.7", source = "rb"}
+langchain-openai = {version = "<0.1.1", source = "rb"}
+langchain-google-genai = {version = "^0.0.11", source = "rb"}
+
+
+[[tool.poetry.source]]
+name = "rb"
+url = "https://rb-artifactory.bosch.com/artifactory/api/pypi/python-virtual/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
