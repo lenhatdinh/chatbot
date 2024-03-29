@@ -4,13 +4,14 @@ from chat.memories import memory_creators
 
 chatbot_chain = StreamableConversationChain(
     llm=chat_model_creators["gpt-3.5-turbo"](),
-    memory=memory_creators["0-window"](),
+    memory=memory_creators["10-window"](),
 )
 
-# while True:
-#     query = input("\n>> ")
-#     if query.lower() == "q":
-#         break
+if __name__ == "__main__":
+    while True:
+        query = input("\n>> ")
+        if query.lower() == "q":
+            break
 
-#     for output in chatbot_chain.stream(query):
-#         print(output, end="")
+        for output in chatbot_chain.stream(query):
+            print(output, end="")
