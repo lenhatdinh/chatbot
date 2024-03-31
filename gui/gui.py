@@ -44,8 +44,28 @@ if not st.session_state.chat_history:
 
 
 with st.sidebar:
+    if "chat_name" not in st.session_state:
+        st.session_state.chat_name = "New chat"
+
+    st.page_link(page="gui.py", label=st.session_state.chat_name)
+
+    st. divider()
+
     st.button(
         "Clear chat history",
         use_container_width=True,
         on_click=st.session_state.chat_history.clear,
     )
+
+    with st.expander("Edit chat name"):
+        col1, col2 = st.columns([1.5, 1])
+        new_name = col1.text_input(
+            label="Chat Name",
+            value=st.session_state.chat_name,
+            label_visibility="collapsed",
+        )
+        apply_button = col2.button("Apply")
+
+        if new_name and apply_button:
+            st.session_state.chat_name = new_name
+            st.rerun()
