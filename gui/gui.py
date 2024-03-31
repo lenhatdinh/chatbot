@@ -13,10 +13,8 @@ st.title(":blue[Chatbot] :green[by Langchain]")
 
 chat_window = st.container(border=True, height=500)
 
-
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
-    chat_window.info("Hello!👋  \nHow can I help you today?")
 
 
 for chat_round in st.session_state.chat_history[-20:]:
@@ -39,3 +37,15 @@ if query := st.chat_input("Enter your query"):
         "query": query,
         "response": full_response,
     })
+
+
+if not st.session_state.chat_history:
+    chat_window.info("Hello!👋  \nHow can I help you today?")
+
+
+with st.sidebar:
+    st.button(
+        "Clear chat history",
+        use_container_width=True,
+        on_click=st.session_state.chat_history.clear,
+    )
